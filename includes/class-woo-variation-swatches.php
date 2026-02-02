@@ -110,8 +110,10 @@ if ( ! class_exists( 'Woo_Variation_Swatches' ) ) {
 			$get_variations = $total_children <= absint( $threshold_min );
 			$available_variations = $get_variations ? $product->get_available_variations() : array();
 
+			$archive_align = $this->get_option( 'archive_align', 'flex-start' );
 			$wrapper_attributes = array(
 				'class'                  => 'woo-variation-swatches wvs-archive-variations-wrapper woo_variation_swatches_variations_form',
+				'data-archive-align'      => $archive_align,
 				'data-product_id'         => absint( $product->get_id() ),
 				'data-product_variations' => wc_esc_json( wp_json_encode( $available_variations ) ),
 			);

@@ -272,6 +272,7 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Product_Page' ) ) {
 				'--wvs-single-product-item-width'     => sprintf( '%spx', $width ),
 				'--wvs-single-product-item-height'    => sprintf( '%spx', $height ),
 				'--wvs-single-product-item-font-size' => sprintf( '%spx', $font_size ),
+				'--wvs-archive-product-item-font-size' => sprintf( '%spx', $font_size ),
 			);
 
 			return apply_filters( 'woo_variation_swatches_inline_style_declaration', $declaration );

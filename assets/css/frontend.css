@@ -1,3 +1,16 @@
+
+.woo-variation-swatches .wvs-archive-variations-wrapper[data-archive-align="center"] .variable-items-wrapper {
+  justify-content: center;
+}
+
+.woo-variation-swatches .wvs-archive-variations-wrapper[data-archive-align="flex-end"] .variable-items-wrapper {
+  justify-content: flex-end;
+}
+
+.woo-variation-swatches .wvs-archive-variations-wrapper[data-archive-align="flex-start"] .variable-items-wrapper {
+  justify-content: flex-start;
+}
+
 /*!
  * Variation Swatches for WooCommerce
  *

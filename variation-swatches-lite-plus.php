@@ -3,7 +3,7 @@
 	 * Plugin Name: Variation Swatches Lite+
 	 * Description: Beautiful color, image, and button variation swatches for WooCommerce product attributes. Requires WooCommerce 8.0+
 	 * Author: absoftlab
-	 * Version: 1.0.3
+	 * Version: 1.0.5
 	 * Requires PHP: 7.4
 	 * Requires at least: 5.9
 	 * Tested up to: 6.8
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'WOO_VARIATION_SWATCHES_PLUGIN_VERSION' ) ) {
-	define( 'WOO_VARIATION_SWATCHES_PLUGIN_VERSION', '1.0.3' );
+	define( 'WOO_VARIATION_SWATCHES_PLUGIN_VERSION', '1.0.5' );
 }
 
 if ( ! defined( 'WOO_VARIATION_SWATCHES_MINIMUM_COMPATIBLE_PRO_PLUGIN_VERSION' ) ) {

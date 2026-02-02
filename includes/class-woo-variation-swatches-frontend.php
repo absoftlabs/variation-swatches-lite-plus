@@ -284,7 +284,6 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Frontend' ) ) {
 				wp_die();
 			}
 
-
 			$variation_data = array(
 				'id'                => $variation->get_id(),
 				'is_purchasable'    => $variation->is_purchasable(),
@@ -298,7 +297,6 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Frontend' ) ) {
 			);
 
 			wp_send_json( $variation_data );
-
 		}
 
 		public function archive_swatches_output() {
