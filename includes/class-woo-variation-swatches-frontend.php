@@ -94,22 +94,10 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Frontend' ) ) {
 
 			$behavior = sprintf( 'wvs-behavior-%s', sanitize_text_field( woo_variation_swatches()->get_option( 'attribute_behavior', 'blur' ) ) );
 
-			$classes[] = 'variation-swatches-lite-plus';
+			$classes[] = 'woo-variation-swatches';
 			$classes[] = 'variation-swatches-lite-plus';
 			$classes[] = $behavior;
 			$classes[] = sprintf( 'wvs-theme-%s', strtolower( basename( get_stylesheet_directory() ) ) );
-			$archive_align = woo_variation_swatches()->get_option( 'archive_align', 'flex-start' );
-			switch ( $archive_align ) {
-				case 'center':
-					$classes[] = 'wvs-archive-align-center';
-					break;
-				case 'flex-end':
-					$classes[] = 'wvs-archive-align-right';
-					break;
-				default:
-					$classes[] = 'wvs-archive-align-left';
-			}
-
 			$classes[] = ( wp_is_mobile() ? 'wvs-mobile' : '' );
 
 			if ( wc_string_to_bool( woo_variation_swatches()->get_option( 'show_variation_label', 'yes' ) ) ) {

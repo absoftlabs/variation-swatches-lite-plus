@@ -142,7 +142,7 @@ if ( ! class_exists( 'GetWooPlugins_Admin_Menus', false ) ) :
 				return;
 			}
 
-			add_menu_page( esc_html__( 'Variation Swatches Settings', 'variation-swatches-lite-plus' ), esc_html__( 'Variation Swatches', 'variation-swatches-lite-plus' ), 'edit_theme_options', 'getwooplugins', null, 'dashicons-admin-settings', '45.5' );
+			add_menu_page( esc_html__( 'GetWooPlugins Settings', 'variation-swatches-lite-plus' ), esc_html__( 'GetWooPlugins', 'variation-swatches-lite-plus' ), 'edit_theme_options', 'getwooplugins', null, 'dashicons-admin-settings', '45.5' );
 		}
 
 		public function get_settings_link( $id, $section = false ) {
@@ -168,7 +168,7 @@ if ( ! class_exists( 'GetWooPlugins_Admin_Menus', false ) ) :
 		 */
 		public function settings_menu() {
 
-			$settings_page = add_submenu_page( 'getwooplugins', esc_html__( 'Variation Swatches Settings', 'variation-swatches-lite-plus' ), esc_html__( 'Variation Swatches', 'variation-swatches-lite-plus' ), 'manage_options', 'getwooplugins-settings', array(
+			$settings_page = add_submenu_page( 'getwooplugins', esc_html__( 'GetWooPlugins Settings', 'variation-swatches-lite-plus' ), esc_html__( 'Home', 'variation-swatches-lite-plus' ), 'manage_options', 'getwooplugins-settings', array(
 				$this,
 				'settings_page'
 			) );
