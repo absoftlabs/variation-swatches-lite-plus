@@ -1,4 +1,69 @@
 Variation Swatches Lite+ Changelog
 
+1.0.18
+- Add archive fallback handler for Astra price updates.
+
+Variation Swatches Lite+ Changelog
+
+1.0.17
+- Initialize archive swatches on page load.
+
+Variation Swatches Lite+ Changelog
+
+1.0.16
+- Force archive swatch click handler and price sync.
+
+Variation Swatches Lite+ Changelog
+
+1.0.15
+- Fix archive variation price update in Astra loop markup.
+
+Variation Swatches Lite+ Changelog
+
+1.0.14
+- Fix archive selected state and price update to match selected swatch.
+
+Variation Swatches Lite+ Changelog
+
+1.0.13
+- Fix archive swatch selection and replace loop button with Buy Now.
+
+Variation Swatches Lite+ Changelog
+
+1.0.12
+- Fix archive swatches selection and price update parsing.
+
+Variation Swatches Lite+ Changelog
+
+1.0.11
+- Archive price now reflects the selected variation.
+
+Variation Swatches Lite+ Changelog
+
+1.0.10
+- Archive variation selection updates price instantly.
+
+Variation Swatches Lite+ Changelog
+
+1.0.9
+- Fix selection state for single and archive swatches.
+
+Variation Swatches Lite+ Changelog
+
+1.0.8
+- Ensure archive swatches initialize on page load.
+
+Variation Swatches Lite+ Changelog
+
+1.0.7
+- Fixed archive swatch selection interactions.
+
+Variation Swatches Lite+ Changelog
+
+1.0.6
+- Archive price updates on variation selection.
+
+Variation Swatches Lite+ Changelog
+
 1.0.3
 - Archive alignment and archive font-size fixes.

@@ -31,6 +31,7 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Frontend' ) ) {
 			add_filter( 'body_class', array( $this, 'body_class' ) );
 			add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'archive_swatches_output' ), 9 );
 			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'archive_swatches_output' ), 9 );
+			add_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'loop_buy_now_link' ), 10, 3 );
 		}
 
 		protected function init() {
@@ -297,6 +298,30 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Frontend' ) ) {
 			);
 
 			wp_send_json( $variation_data );
+		}
+
+		public function loop_buy_now_link( $html, $product, $args ) {
+			if ( ! $product || ! $product->is_type( 'variable' ) ) {
+				return $html;
+			}
+
+			$label = esc_html__( 'Buy Now', 'variation-swatches-lite-plus' );
+			$url = $product->get_permalink();
+
+			$classes = 'button';
+			if ( isset( $args['class'] ) ) {
+				$classes = $args['class'];
+			}
+			$classes = trim( $classes . ' buy-now' );
+
+			return sprintf(
+				'<a href="%1$s" class="%2$s" data-product_id="%3$d" rel="nofollow" aria-label="%4$s">%5$s</a>',
+				esc_url( $url ),
+				esc_attr( $classes ),
+				absint( $product->get_id() ),
+				esc_attr( $product->get_name() ),
+				esc_html( $label )
+			);
 		}
 
 		public function archive_swatches_output() {

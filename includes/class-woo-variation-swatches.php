@@ -105,10 +105,7 @@ if ( ! class_exists( 'Woo_Variation_Swatches' ) ) {
 				return '';
 			}
 
-			$threshold_min  = apply_filters( 'woocommerce_ajax_variation_threshold', 30, $product );
-			$total_children = count( $product->get_children() );
-			$get_variations = $total_children <= absint( $threshold_min );
-			$available_variations = $get_variations ? $product->get_available_variations() : array();
+			$available_variations = $product->get_available_variations();
 
 			$archive_align = $this->get_option( 'archive_align', 'flex-start' );
 			$wrapper_attributes = array(

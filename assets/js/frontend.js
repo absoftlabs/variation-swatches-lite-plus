@@ -85,7 +85,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     return false;
   }
   function isWooVariationSwatchesAPIRequest(options) {
-    return !!options.path && options.path.indexOf('variation-swatches-lite-plus') !== -1 || !!options.url && options.url.indexOf('variation-swatches-lite-plus') !== -1;
+    return !!options.path && options.path.indexOf('woo-variation-swatches') !== -1 || !!options.url && options.url.indexOf('woo-variation-swatches') !== -1;
   }
   window.createMiddlewareForExtraQueryParams = function () {
     var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -122,10 +122,22 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         this.$element = $(element);
         this.settings = $.extend(true, {}, this.defaults, options);
         this.product_variations = this.$element.data('product_variations') || [];
+        if (typeof this.product_variations === 'string') {
+          try {
+            this.product_variations = JSON.parse(this.product_variations);
+          } catch (e) {
+            try {
+              var fixed = this.product_variations.replace(/&quot;/g, '"').replace(/&#34;/g, '"');
+              this.product_variations = JSON.parse(fixed);
+            } catch (e2) {
+              this.product_variations = [];
+            }
+          }
+        }
         this.is_ajax_variation = this.product_variations.length < 1;
         this.product_id = this.$element.data('product_id');
         this.reset_variations = this.$element.find('.reset_variations');
-        this.attributeFields = this.$element.find('.variations select');
+        this.attributeFields = this.$element.find('.variations select, select.woo-variation-raw-select');
         this.attributeSwatchesFields = this.$element.find('ul.variable-items-wrapper');
         this.selected_item_template = "<span class=\"woo-selected-variation-item-name\" data-default=\"\"></span>";
         this.$element.addClass('wvs-loaded');
@@ -150,6 +162,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           this.prepareItems();
           this.setupItems();
           this.setupEvents();
+          this.updateArchivePrice();
           this.setUpStockInfo();
           this.deselectNonAvailable();
         }
@@ -301,7 +314,25 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       }, {
         key: "setupEvents",
         value: function setupEvents() {
+          var _this4 = this;
           var $element = this.$element;
+          if (this.$element.hasClass('wvs-archive-variations-wrapper')) {
+            this.$element.off('click.wvs-archive');
+            this.$element.on('click.wvs-archive', 'li.variable-item', function (event) {
+              event.preventDefault();
+              event.stopPropagation();
+              var $li = $(this);
+              var attribute_name = $li.data('attribute_name');
+              var attribute_value = $li.data('value');
+              var $select = $element.find("select.woo-variation-raw-select[data-attribute_name='".concat(attribute_name, "']"));
+              if ($select.length) {
+                $select.val(attribute_value).trigger('change');
+              }
+              $li.closest('ul').find('li.variable-item').removeClass('selected').attr('aria-checked', 'false');
+              $li.addClass('selected').attr('aria-checked', 'true');
+              _this4.updateArchivePrice(attribute_name, attribute_value);
+            });
+          }
           this.attributeSwatchesFields.each(function (i, element) {
             var select = $(element).parent().find('select.woo-variation-raw-select');
 
@@ -315,6 +346,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
                 var attribute_value = $(this).data('value');
                 select.val(attribute_value).trigger('change');
                 select.trigger('click');
+                $(element).find('li.variable-item').removeClass('selected').attr('aria-checked', 'false');
+                $(this).addClass('selected').attr('aria-checked', 'true');
                 $(this).trigger('wvs-selected-item', [attribute_name, attribute_value, select, $element]); // Custom Event for li
               });
 
@@ -326,6 +359,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
                 var attribute_value = $(this).data('value');
                 select.val('').trigger('change');
                 select.trigger('click');
+                $(this).removeClass('selected').attr('aria-checked', 'false');
                 $(this).trigger('wvs-unselected-item', [attribute_name, attribute_value, select, $element]); // Custom Event for li
               });
 
@@ -363,6 +397,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
                 var attribute_value = $(this).data('value');
                 select.val(attribute_value).trigger('change');
                 select.trigger('click');
+                $(element).find('li.variable-item').removeClass('selected').attr('aria-checked', 'false');
+                $(this).addClass('selected').attr('aria-checked', 'true');
                 $(this).trigger('wvs-selected-item', [attribute_name, attribute_value, select, $element]); // Custom Event for li
               });
 
@@ -389,7 +425,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
               }
             });
           });
-          this.$element.on('click.wvs', '.variation-swatches-lite-plus-variable-item-more', function (event) {
+          this.$element.on('click.wvs', '.woo-variation-swatches-variable-item-more', function (event) {
             event.preventDefault();
             $(this).parent().removeClass('enabled-display-limit-mode enabled-catalog-display-limit-mode');
             $(this).remove();
@@ -423,6 +459,12 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
               }
               //
             });
+          });
+          this.$element.on('wvs-selected-item.wvs', function (event, attribute_name, attribute_value) {
+            _this4.updateArchivePrice(attribute_name, attribute_value);
+          });
+          this.$element.on('wvs-unselected-item.wvs', function () {
+            _this4.updateArchivePrice();
           });
         }
       }, {
@@ -546,6 +588,66 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           }
         }
       }, {
+        key: "updateArchivePrice",
+        value: function updateArchivePrice(attributeName, attributeValue) {
+          if (!this.$element.hasClass('wvs-archive-variations-wrapper')) {
+            return;
+          }
+          if (!this.product_variations || this.product_variations.length < 1) {
+            return;
+          }
+          var $product = this.$element.closest('.product, .wc-block-grid__product');
+          if (!$product.length) {
+            return;
+          }
+          var $price = $product.find('.astra-shop-summary-wrap .price').first();
+          if (!$price.length) {
+            $price = $product.find('.price').first();
+          }
+          if (!$price.length) {
+            return;
+          }
+          if (!$price.data('wvs-original-price')) {
+            $price.data('wvs-original-price', $price.html());
+          }
+
+          var chosen = this.getChosenAttributes();
+          var swatchChosen = this.getChosenAttributesFromSwatches();
+          if (swatchChosen.chosenCount > 0) {
+            chosen = swatchChosen;
+          }
+          if (attributeName && attributeValue) {
+            chosen.data = _objectSpread(_objectSpread({}, chosen.data), {}, _defineProperty({}, attributeName, attributeValue));
+          }
+
+          if (chosen.chosenCount < chosen.count) {
+            if (chosen.chosenCount === 0 && $price.data('wvs-original-price')) {
+              $price.html($price.data('wvs-original-price'));
+            }
+            return;
+          }
+
+          var variation = null;
+          if (attributeName && attributeValue) {
+            variation = this.findVariationByAttribute(attributeName, attributeValue);
+          }
+          if (!variation) {
+            var matches = this.findMatchingVariations(this.product_variations, chosen.data);
+            if (matches.length) {
+              variation = matches[0];
+            }
+          }
+          if (!variation) {
+            if ($price.data('wvs-original-price')) {
+              $price.html($price.data('wvs-original-price'));
+            }
+            return;
+          }
+          if (variation && variation.price_html) {
+            $price.html(variation.price_html);
+          }
+        }
+      }, {
         key: "resetStockInfo",
         value: function resetStockInfo() {
           this.$element.find('.variable-item').removeClass('wvs-show-stock-left-info');
@@ -565,6 +667,33 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
             }
             count++;
             data[attribute_name] = value;
+          });
+          return {
+            'count': count,
+            'chosenCount': chosen,
+            'mayChosenCount': chosen + 1,
+            'data': data
+          };
+        }
+      }, {
+        key: "getChosenAttributesFromSwatches",
+        value: function getChosenAttributesFromSwatches() {
+          var data = {};
+          var count = 0;
+          var chosen = 0;
+          this.attributeSwatchesFields.each(function () {
+            var attribute_name = $(this).data('attribute_name') || $(this).attr('data-attribute_name');
+            if (!attribute_name) {
+              return;
+            }
+            count++;
+            var $selected = $(this).find('li.variable-item.selected').first();
+            if ($selected.length) {
+              data[attribute_name] = $selected.data('value') || '';
+              chosen++;
+            } else {
+              data[attribute_name] = '';
+            }
           });
           return {
             'count': count,
@@ -607,6 +736,21 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
             }
           }
           return found;
+        }
+      }, {
+        key: "findVariationByAttribute",
+        value: function findVariationByAttribute(attributeName, attributeValue) {
+          if (!attributeName) {
+            return null;
+          }
+          for (var i = 0; i < this.product_variations.length; i++) {
+            var variation = this.product_variations[i];
+            var attrs = variation.attributes || {};
+            if (attrs[attributeName] !== undefined && attrs[attributeName] === attributeValue) {
+              return variation;
+            }
+          }
+          return null;
         }
       }, {
         key: "findMatchingVariations",
@@ -719,6 +863,7 @@ jQuery(function ($) {
 
       // Any custom product with .woo_variation_swatches_variations_form class to support
       $('.woo_variation_swatches_variations_form:not(.wvs-loaded)').WooVariationSwatches();
+      $('.wvs-archive-variations-wrapper:not(.wvs-loaded)').WooVariationSwatches();
 
       // Yith Composite Product
       $('.ywcp_inner_selected_container:not(.wvs-loaded)').WooVariationSwatches();
@@ -733,6 +878,89 @@ jQuery(function ($) {
   $(document).on('wc_variation_form.wvs', function (event) {
     $(document).trigger('woo_variation_swatches_init');
   });
+
+  // Ensure archive swatches init on page load.
+  $(document).trigger('woo_variation_swatches_init');
+
+  // Fallback archive swatch handler (theme-agnostic)
+  if (!window.wvsArchivePriceFallback) {
+    window.wvsArchivePriceFallback = true;
+    var parseVariations = function parseVariations($wrapper) {
+      var raw = $wrapper.attr('data-product_variations') || '';
+      if (!raw) {
+        return [];
+      }
+      try {
+        return JSON.parse(raw);
+      } catch (e) {
+        try {
+          var fixed = raw.replace(/&quot;/g, '\"').replace(/&#34;/g, '\"').replace(/&amp;/g, '&');
+          return JSON.parse(fixed);
+        } catch (e2) {
+          return [];
+        }
+      }
+    };
+
+    var updatePrice = function updatePrice($wrapper, attributeName, attributeValue) {
+      var variations = parseVariations($wrapper);
+      if (!variations.length) {
+        return;
+      }
+      var $product = $wrapper.closest('.product, .wc-block-grid__product');
+      if (!$product.length) {
+        return;
+      }
+      var $price = $product.find('.astra-shop-summary-wrap .price').first();
+      if (!$price.length) {
+        $price = $product.find('.price').first();
+      }
+      if (!$price.length) {
+        return;
+      }
+      if (!$wrapper.data('wvs-original-price')) {
+        $wrapper.data('wvs-original-price', $price.prop('outerHTML'));
+      }
+
+      var match = null;
+      for (var i = 0; i < variations.length; i++) {
+        var v = variations[i];
+        var attrs = v.attributes || {};
+        if (attrs[attributeName] !== undefined && attrs[attributeName] === attributeValue) {
+          match = v;
+          break;
+        }
+      }
+      if (!match || !match.price_html) {
+        return;
+      }
+
+      if (match.price_html.indexOf('class=\"price\"') !== -1 || match.price_html.indexOf('class=\'price\'') !== -1) {
+        $price.replaceWith(match.price_html);
+      } else {
+        $price.html(match.price_html);
+      }
+    };
+
+    $(document).on('click.wvs-archive-fallback', '.wvs-archive-variations-wrapper li.variable-item', function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      var $li = $(this);
+      var $wrapper = $li.closest('.wvs-archive-variations-wrapper');
+      var attributeName = $li.data('attribute_name');
+      var attributeValue = $li.data('value');
+      if (!attributeName) {
+        return;
+      }
+      $li.closest('ul').find('li.variable-item').removeClass('selected').attr('aria-checked', 'false');
+      $li.addClass('selected').attr('aria-checked', 'true');
+      var $select = $wrapper.find("select.woo-variation-raw-select[data-attribute_name='".concat(attributeName, "']"));
+      if ($select.length) {
+        $select.val(attributeValue).trigger('change');
+      }
+      updatePrice($wrapper, attributeName, attributeValue);
+    });
+  }
 
   // Try to cover global ajax data complete
   $(document).ajaxComplete(function (event, request, settings) {
