@@ -971,6 +971,84 @@ jQuery(function ($) {
     }, 1000);
   });
 
+  // Buy Now from archive with selected variation
+  $(document).on('click.wvs-buy-now', 'a.buy-now[data-wvs-buy-now="1"]', function (event) {
+    var $btn = $(this);
+    var $product = $btn.closest('.product, .wc-block-grid__product');
+    var $wrapper = $product.find('.wvs-archive-variations-wrapper').first();
+    if (!$wrapper.length) {
+      return;
+    }
+    var raw = $wrapper.attr('data-product_variations') || '';
+    if (!raw) {
+      return;
+    }
+    var variations = [];
+    try {
+      variations = JSON.parse(raw);
+    } catch (e) {
+      try {
+        var fixed = raw.replace(/&quot;/g, '\"').replace(/&#34;/g, '\"').replace(/&amp;/g, '&');
+        variations = JSON.parse(fixed);
+      } catch (e2) {
+        variations = [];
+      }
+    }
+    if (!variations.length) {
+      return;
+    }
+
+    // Build selected attributes map from swatches
+    var selected = {};
+    $wrapper.find('ul.variable-items-wrapper').each(function () {
+      var attr = $(this).data('attribute_name') || $(this).attr('data-attribute_name');
+      if (!attr) {
+        return;
+      }
+      var $sel = $(this).find('li.variable-item.selected').first();
+      if ($sel.length) {
+        selected[attr] = $sel.data('value');
+      }
+    });
+
+    // Find matching variation
+    var match = null;
+    for (var i = 0; i < variations.length; i++) {
+      var v = variations[i];
+      var attrs = v.attributes || {};
+      var ok = true;
+      for (var key in selected) {
+        if (!selected[key] || attrs[key] === undefined || attrs[key] !== selected[key]) {
+          ok = false;
+          break;
+        }
+      }
+      if (ok) {
+        match = v;
+        break;
+      }
+    }
+    if (!match || !match.variation_id) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    var params = {
+      'add-to-cart': match.product_id || $btn.data('product_id'),
+      'variation_id': match.variation_id
+    };
+    for (var k in match.attributes) {
+      params[k] = match.attributes[k];
+    }
+    var qs = $.param(params);
+    var checkout = (woo_variation_swatches_options && woo_variation_swatches_options.cart_url) ? woo_variation_swatches_options.cart_url : (window.wc_add_to_cart_variation_params ? wc_add_to_cart_variation_params.wc_ajax_url.toString().replace('%%endpoint%%','') : '/');
+    // Use checkout page directly if available
+    var checkoutUrl = window.wc_cart_params && wc_cart_params.checkout_url ? wc_cart_params.checkout_url : (window.woocommerce_params && woocommerce_params.checkout_url ? woocommerce_params.checkout_url : '/checkout/');
+    window.location.href = checkoutUrl + (checkoutUrl.indexOf('?') === -1 ? '?' : '&') + qs;
+  });
+
   // Composite Product Load
   // JS API: https://docs.woocommerce.com/document/composite-products/composite-products-js-api-reference/
   $(document.body).on('wc-composite-initializing', '.composite_data', function (event, composite) {

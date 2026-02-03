@@ -315,7 +315,7 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Frontend' ) ) {
 			$classes = trim( $classes . ' buy-now' );
 
 			return sprintf(
-				'<a href="%1$s" class="%2$s" data-product_id="%3$d" rel="nofollow" aria-label="%4$s">%5$s</a>',
+				'<a href="%1$s" class="%2$s" data-product_id="%3$d" data-wvs-buy-now="1" rel="nofollow" aria-label="%4$s">%5$s</a>',
 				esc_url( $url ),
 				esc_attr( $classes ),
 				absint( $product->get_id() ),

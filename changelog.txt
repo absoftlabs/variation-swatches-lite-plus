@@ -1,5 +1,10 @@
 Variation Swatches Lite+ Changelog
 
+1.0.19
+- Archive Buy Now adds selected variation and redirects to checkout.
+
+Variation Swatches Lite+ Changelog
+
 1.0.18
 - Add archive fallback handler for Astra price updates.
 
