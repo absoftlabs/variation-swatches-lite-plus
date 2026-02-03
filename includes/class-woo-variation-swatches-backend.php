@@ -113,13 +113,7 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Backend' ) ) {
 				return $links;
 			}
 
-			$row_meta = apply_filters( 'woo_variation_swatches_plugin_row_meta', array(
-				'docs'    => '<a target="_blank" href="' . esc_url( 'https://getwooplugins.com/documentation/woocommerce-variation-swatches/' ) . '" aria-label="' . esc_attr__( 'View documentation', 'variation-swatches-lite-plus' ) . '">' . esc_html__( 'Documentation', 'variation-swatches-lite-plus' ) . '</a>',
-				'videos'  => '<a target="_blank" href="' . esc_url( 'https://www.youtube.com/channel/UC6F21JXiLUPO7sm-AYlA3Ig/videos' ) . '" aria-label="' . esc_attr__( 'Video Tutorials', 'variation-swatches-lite-plus' ) . '">' . esc_html__( 'Video Tutorials', 'variation-swatches-lite-plus' ) . '</a>',
-				'support' => '<a target="_blank" href="' . esc_url( 'https://getwooplugins.com/tickets/' ) . '" aria-label="' . esc_attr__( 'Help & Support', 'variation-swatches-lite-plus' ) . '">' . esc_html__( 'Help & Support', 'variation-swatches-lite-plus' ) . '</a>',
-			) );
-
-			return array_merge( $links, $row_meta );
+			return $links;
 		}
 
 		public function plugin_action_links( $links ) {

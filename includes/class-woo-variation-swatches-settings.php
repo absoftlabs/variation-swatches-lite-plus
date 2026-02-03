@@ -42,7 +42,6 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Settings' ) ) :
 
 		public function save_button( $default_value, $current_tab, $current_section ) {
 			if ( $current_tab === $this->get_id() && in_array( $current_section, array(
-					'tutorial',
 					'plugins',
 					'group'
 				), true ) ) {
@@ -82,14 +81,7 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Settings' ) ) :
 		}
 
 		public function modal_support_links() {
-			$links = array(
-				'button_url'  => 'https://getwooplugins.com/documentation/woocommerce-variation-swatches/',
-				'button_text' => esc_html__( 'See Documentation', 'variation-swatches-lite-plus' ),
-				'link_url'    => 'https://getwooplugins.com/tickets/',
-				'link_text'   => esc_html__( 'Help &amp; Support', 'variation-swatches-lite-plus' )
-			);
-
-			return $links;
+			return array();
 		}
 
 		public function modal_buy_links() {
@@ -101,9 +93,7 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Settings' ) ) :
 			$links = array(
 				'button_url'   => 'https://getwooplugins.com/plugins/woocommerce-variation-swatches/',
 				'button_text'  => esc_html__( 'Buy Now', 'variation-swatches-lite-plus' ),
-				'button_class' => 'button-danger',
-				'link_url'     => 'https://getwooplugins.com/documentation/woocommerce-variation-swatches/',
-				'link_text'    => esc_html__( 'See Documentation', 'variation-swatches-lite-plus' )
+				'button_class' => 'button-danger'
 			);
 
 			return $links;
@@ -215,9 +205,7 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Settings' ) ) :
 
 			$links = array(
 				'button_url'  => 'https://getwooplugins.com/my-account/downloads/',
-				'button_text' => esc_html__( 'Get license', 'variation-swatches-lite-plus' ),
-				'link_url'    => 'https://getwooplugins.com/tickets/',
-				'link_text'   => esc_html__( 'Help &amp; Support', 'variation-swatches-lite-plus' )
+				'button_text' => esc_html__( 'Get license', 'variation-swatches-lite-plus' )
 			);
 
 			$body = sprintf( '<video preload="auto" autoplay loop muted playsinline src="%s"></video>', esc_url( woo_variation_swatches()->org_assets_url( '/preview-18.webm' ) ) );
@@ -246,9 +234,7 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Settings' ) ) :
 		public function output( $current_tab ) {
 			global $current_section;
 
-			if ( $current_tab === $this->get_id() && 'tutorial' === $current_section ) {
-				$this->tutorial_section( $current_section );
-			} elseif ( $current_tab === $this->get_id() && 'group' === $current_section ) {
+			if ( $current_tab === $this->get_id() && 'group' === $current_section ) {
 				$this->group_section( $current_section );
 			} else {
 				parent::output( $current_tab );
@@ -298,33 +284,13 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Settings' ) ) :
 				'style'    => esc_html__( 'Styling', 'variation-swatches-lite-plus' ),
 				'single'   => esc_html__( 'Product Page', 'variation-swatches-lite-plus' ),
 				'archive'  => esc_html__( 'Archive / Shop', 'variation-swatches-lite-plus' ),
-				'special'  => esc_html__( 'Special Attributes', 'variation-swatches-lite-plus' ),
-				'group'    => esc_html__( 'Group', 'variation-swatches-lite-plus' ),
 				'license'  => array(
 					'name' => esc_html__( 'License', 'variation-swatches-lite-plus' ),
 					'url'  => false
 				),
-				'tutorial' => esc_html__( 'Tutorial', 'variation-swatches-lite-plus' ),
 			);
 
-			if ( current_user_can( 'install_plugins' ) ) {
-				$sections[ 'plugins' ] = array(
-					'name' => $this->plugins_tab( esc_html__( 'Useful Free Plugins', 'variation-swatches-lite-plus' ) ),
-					'url'  => self_admin_url( 'plugin-install.php?s=getwooplugins&tab=search&type=author' ),
-				);
-			}
-
 			return $sections;
-		}
-
-		public function tutorial_section( $current_section ) {
-			$settings = $this->get_settings( $current_section );
-			include_once dirname( __FILE__ ) . '/html-settings-tutorial.php';
-		}
-
-		public function group_section( $current_section ) {
-			$settings = $this->get_settings( $current_section );
-			include_once dirname( __FILE__ ) . '/html-settings-group.php';
 		}
 
 		protected function get_settings_for_default_section() {
@@ -675,10 +641,9 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Settings' ) ) :
 		protected function get_settings_for_archive_section() {
 
 
-			$note        = sprintf('<span style="color: red">%s</span>', esc_html__( 'Note:', 'variation-swatches-lite-plus' ) );
-			$ticket_link = sprintf( '<a target="_blank" href="%s">%s</a>', 'https://getwooplugins.com/tickets/', esc_html__('please open a ticket', 'variation-swatches-lite-plus' ) );
-			/* translators: %1$s = Note markup, %2$s = Open ticket link. */
-			$archive_swatches_position_desc = sprintf(esc_html__('Show archive swatches position. %1$s Some theme remove default woocommerce hooks that why it\'s may not work as expected. For theme compatibility %2$s.', 'variation-swatches-lite-plus' ), $note, $ticket_link );
+			$note = sprintf('<span style="color: red">%s</span>', esc_html__( 'Note:', 'variation-swatches-lite-plus' ) );
+			/* translators: %s = Note markup */
+			$archive_swatches_position_desc = sprintf(esc_html__('Show archive swatches position. %s Some theme remove default woocommerce hooks that why it\'s may not work as expected.', 'variation-swatches-lite-plus' ), $note );
 
 			$settings = array(
 

@@ -68,87 +68,74 @@ $product_swatches_data = array();
 						<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Individual Product Basis Attribute Variation Swatches Customization', 'variation-swatches-lite-plus' ); ?>
 
 						<div class="gwp-pro-features-links">
-							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/show-all-swatches-type-in-the-same-variation/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a> |
-							<a target="_blank" href="https://www.youtube.com/watch?v=rg1Xg-t29Kc"><?php esc_html_e( 'Video Tutorial', 'variation-swatches-lite-plus' ); ?></a>
+							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/show-all-swatches-type-in-the-same-variation/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a>
 						</div>
 					</li>
 
 					<li>
 						<span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Show Image, Color, Button Variation Swatches in Same Attribute', 'variation-swatches-lite-plus' ); ?>
 						<div class="gwp-pro-features-links">
-							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/product-details/product/polo-ralph-lauren-ph3127-59/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a> |
-							<a target="_blank" href="https://www.youtube.com/watch?v=ILf1S2k97es&list=PLjkiDGg3ul_L-3332EDkmuN_G2ttrJM24&index=9"><?php esc_html_e( 'Video Tutorial', 'variation-swatches-lite-plus' ); ?></a>
+							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/product-details/product/polo-ralph-lauren-ph3127-59/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a>
 						</div>
 					</li>
 
 					<li>
 						<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Convert Manually Created Attribute Variations Into Color, Image, and Label Swatches', 'variation-swatches-lite-plus' ); ?>
-						<div class="gwp-pro-features-links">
-							<a target="_blank" href="https://www.youtube.com/watch?v=rg1Xg-t29Kc"><?php esc_html_e( 'Video Tutorial', 'variation-swatches-lite-plus' ); ?></a>
-						</div>
 					</li>
 
 					<li>
 						<span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Group based swatches display.', 'variation-swatches-lite-plus' ); ?>
 						<div class="gwp-pro-features-links">
 							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/product/nike-air-vapormax-plus-group/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a>
-							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/group-category-swatches"><?php esc_html_e( 'Video Tutorial', 'variation-swatches-lite-plus' ); ?></a>
 						</div>
 					</li>
 
 					<li>
 						<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Convert attribute variations into radio button.', 'variation-swatches-lite-plus' ); ?>
 						<div class="gwp-pro-features-links">
-							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/radio-variation-swatches"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a> |
-							<a target="_blank" href="https://www.youtube.com/watch?v=XY6GjG3yPUU&list=PLjkiDGg3ul_JB6vcxRYEVlDC1_setGLY0"><?php esc_html_e( 'Video Tutorial', 'variation-swatches-lite-plus' ); ?></a>
+							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/radio-variation-swatches"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a>
 						</div>
 					</li>
 
 					<li>
 						<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Show Entire Color, Image, Label And Radio Attributes Swatches In Catalog/ Category / Archive / Store/ Shop Pages', 'variation-swatches-lite-plus' ); ?>
 						<div class="gwp-pro-features-links">
-							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a> |
-							<a target="_blank" href="https://www.youtube.com/watch?v=1IhEZiGzJHs"><?php esc_html_e( 'Video Tutorial', 'variation-swatches-lite-plus' ); ?></a>
+							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a>
 						</div>
 					</li>
 
 					<li>
 						<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Show Selected Single Color or Image Or Label Attribute Swatches In Catelog/ Category / Archive / Store / Shop Pages', 'variation-swatches-lite-plus' ); ?>
 						<div class="gwp-pro-features-links">
-							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/product-details/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a> |
-							<a target="_blank" href="https://www.youtube.com/watch?v=r1DIlBSJI5o&list=PLjkiDGg3ul_L-3332EDkmuN_G2ttrJM24&index=8"><?php esc_html_e( 'Video Tutorial', 'variation-swatches-lite-plus' ); ?></a>
+							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/product-details/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a>
 						</div>
 					</li>
 
 					<li>
 						<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Change Variation Product Gallery After Selecting Single Attribute Like Amazon Or AliExpress', 'variation-swatches-lite-plus' ); ?>
 						<div class="gwp-pro-features-links">
-							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/change-product-image-based-on-select-attribute/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a> |
-							<a target="_blank" href="https://www.youtube.com/watch?v=31WR96-9kuQ"><?php esc_html_e( 'Video Tutorial', 'variation-swatches-lite-plus' ); ?></a>
+							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/change-product-image-based-on-select-attribute/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a>
 						</div>
 					</li>
 
 					<li>
 						<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Generate Selected Attribute Variation Link', 'variation-swatches-lite-plus' ); ?>
 						<div class="gwp-pro-features-links">
-							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/generate-link-for-selected-variations/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a> |
-							<a target="_blank" href="https://www.youtube.com/watch?v=Zw_5ACg0ASA&list=PLjkiDGg3ul_L-3332EDkmuN_G2ttrJM24"><?php esc_html_e( 'Video Tutorial', 'variation-swatches-lite-plus' ); ?></a>
+							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/generate-link-for-selected-variations/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a>
 						</div>
 					</li>
 
 					<li>
 						<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Option to Select ROUNDED and SQUARED Attribute Variation Swatches Shape In the Same Product.', 'variation-swatches-lite-plus' ); ?>
 						<div class="gwp-pro-features-links">
-							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/round-square-shape-swatches"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a> |
-							<a target="_blank" href="https://www.youtube.com/watch?v=1yO9DGYCYAA&list=PLjkiDGg3ul_L-3332EDkmuN_G2ttrJM24&index=10"><?php esc_html_e( 'Video Tutorial', 'variation-swatches-lite-plus' ); ?></a>
+							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/round-square-shape-swatches"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a>
 						</div>
 					</li>
 
 					<li>
 						<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Blur Or Hide Or Show Cross Sign For Out of Stock Variation Swatches (Unlimited Variations Without hiding out of stock item from catalog)', 'variation-swatches-lite-plus' ); ?>
 						<div class="gwp-pro-features-links">
-							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/cross-out-of-stock-variations-more-than-30-variations/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a> |
-							<a target="_blank" href="https://www.youtube.com/watch?v=LGomum3lwHw&list=PLjkiDGg3ul_L-3332EDkmuN_G2ttrJM24&index=11"><?php esc_html_e( 'Video Tutorial', 'variation-swatches-lite-plus' ); ?></a>
+							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/cross-out-of-stock-variations-more-than-30-variations/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a>
 						</div>
 					</li>
 
@@ -162,8 +149,7 @@ $product_swatches_data = array();
 					<li>
 						<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Make Selected Attribute Variation Swatches Size Larger Than Other Default Attribute Variations', 'variation-swatches-lite-plus' ); ?>
 						<div class="gwp-pro-features-links">
-							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/swatches-size-selected-attribute/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a> |
-							<a target="_blank" href="https://www.youtube.com/watch?v=xeT7byUaa7U"><?php esc_html_e( 'Video Tutorial', 'variation-swatches-lite-plus' ); ?></a>
+							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/swatches-size-selected-attribute/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a>
 						</div>
 					</li>
 
@@ -177,8 +163,7 @@ $product_swatches_data = array();
 					<li>
 						<span class="dashicons dashicons-yes"></span> <?php esc_html_e( 'Show Custom Image in Variation Swatches Tooltip In Product And Shop Page', 'variation-swatches-lite-plus' ); ?>
 						<div class="gwp-pro-features-links">
-							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/image-tooltip/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a> |
-							<a target="_blank" href="https://www.youtube.com/watch?v=zrOeb2ksOig&list=PLjkiDGg3ul_L-3332EDkmuN_G2ttrJM24&index=13"><?php esc_html_e( 'Video Tutorial', 'variation-swatches-lite-plus' ); ?></a>
+							<a target="_blank" href="https://demo.getwooplugins.com/woocommerce-variation-swatches/image-tooltip/"><?php esc_html_e( 'Live Demo', 'variation-swatches-lite-plus' ); ?></a>
 						</div>
 					</li>
 

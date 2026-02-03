@@ -68,7 +68,6 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Deactivate_Feedback' ) ) :
 				'broke_site_layout' => array(
 					'title'             => __( 'The plugin <strong>broke my layout</strong> or some functionality.', 'variation-swatches-lite-plus' ),
 					'input_placeholder' => '',
-					'alert'             => __( '<a target="_blank" href="https://getwooplugins.com/tickets/">Please open a support ticket</a>, we will fix it immediately.', 'variation-swatches-lite-plus' ),
 				),
 
 				'plugin_setup_help' => array(
@@ -81,7 +80,6 @@ if ( ! class_exists( 'Woo_Variation_Swatches_Deactivate_Feedback' ) ) :
 				'plugin_config_too_complicated' => array(
 					'title'             => __( 'The plugin is <strong>too complicated to configure.</strong>', 'variation-swatches-lite-plus' ),
 					'input_placeholder' => '',
-					'alert'             => __( '<a target="_blank" href="https://getwooplugins.com/documentation/woocommerce-variation-swatches/">Have you checked our documentation?</a>.', 'variation-swatches-lite-plus' ),
 				),
 
 				'need_specific_feature' => array(
